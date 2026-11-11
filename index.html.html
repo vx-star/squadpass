@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SquadPass – party tickets that get cheaper with friends</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--ink:#F7F5FC;--paper:#090610;--card:#100B1B;--line:#251C3A;--mute:#9A8FB8;--pink:#9461E8;--gold:#FFC83D;--ok:#3CC8F0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+body{background:radial-gradient(1000px 500px at 50% -15%,#2a1a5655,transparent),var(--paper);font-family:Inter,system-ui,sans-serif}.wrap{max-width:1100px}h1,h2,h3,.logo,.big,.stat b{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em}input,.btn,nav button{font-family:Inter,system-ui,sans-serif}.gt,.logo b{background:linear-gradient(90deg,#9461E8,#3CC8F0);-webkit-background-clip:text;background-clip:text;color:transparent}header{border-bottom:1px solid var(--line);padding-bottom:16px}.logo{font-size:26px}nav{background:none;border:0;padding:0;gap:2px}nav button{text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600;color:var(--mute);border-radius:3px}nav button[aria-current=true]{background:none;color:var(--pink)}.btn{background:var(--pink);color:#fff;border-radius:3px;text-transform:uppercase;letter-spacing:.1em;font-size:13px;font-weight:700;box-shadow:none}.btn.alt{background:transparent;color:#fff;border:1px solid #2f2447}.ev,.panel,.stat,.tk{border-radius:4px;background:var(--card);border-color:var(--line)}.ev:hover{border-color:var(--pink)}.tk{border-left-width:3px}.fill{background:linear-gradient(90deg,#9461E8,#3CC8F0)}.big{background:linear-gradient(90deg,#9461E8,#3CC8F0);-webkit-background-clip:text;background-clip:text;color:transparent}.big s{-webkit-text-fill-color:var(--mute)}.tier,.tag{border-radius:3px}.tier.hot{background:#9461e822}.tag.g{color:#04141c}.hero{text-align:center;padding:56px 0 28px}.hero h1{font-size:clamp(46px,11vw,118px);line-height:.98;max-width:none;font-weight:400}.hero p{margin:18px auto 0;font-size:17px}.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:14px}.sec h2{font-size:44px}.cta{text-align:center;padding:44px 16px;margin-top:44px;border:1px solid var(--line);border-radius:4px;background:radial-gradient(600px 200px at 50% 0,#2a1a5666,transparent),var(--card)}.cta h2{font-size:clamp(34px,6vw,52px)}.cta p{color:var(--mute);max-width:34em;margin:12px auto 22px}footer{margin-top:44px;padding-top:28px;border-top:1px solid var(--line);display:flex;gap:30px;justify-content:space-between;flex-wrap:wrap;color:var(--mute);font-size:14px}footer h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 10px}footer a{display:block;color:var(--mute);padding:3px 0;text-decoration:none}footer a:hover{color:var(--ink)}.fine{width:100%;border-top:1px solid var(--line);padding-top:16px;font-size:13px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.5 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+.wrap{max-width:880px;margin:0 auto;padding:20px 16px 60px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.logo{font:800 24px "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;cursor:pointer}
+.logo b{color:var(--pink)}
+nav{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:4px}
+nav button{border:0;background:none;color:var(--mute);font:600 14px "Instrument Sans",sans-serif;padding:8px 16px;border-radius:99px;cursor:pointer}
+nav button[aria-current=true]{background:var(--ink);color:var(--paper)}
+.hero h1{font-size:clamp(34px,7vw,56px);font-weight:800;letter-spacing:-.03em;max-width:12em}
+.hero p{color:var(--mute);max-width:34em;margin:12px 0 28px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+.ev h3{font-size:21px;font-weight:700}
+.meta{color:var(--mute);font-size:14px}
+.tiers{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.tier{font-size:13px;font-weight:600;border:1px dashed var(--line);border-radius:8px;padding:3px 9px}
+.tier.hot{border-style:solid;border-color:var(--pink);color:var(--pink)}
+.btn{border:0;border-radius:10px;padding:11px 18px;font:600 15px "Instrument Sans",sans-serif;cursor:pointer;background:var(--pink);color:#fff}
+.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,input:focus-visible,nav button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+input{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0;width:100%}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>input{flex:1 1 160px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}
+.big{font:800 clamp(44px,10vw,72px)/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.04em}
+.big s{font-size:.4em;color:var(--mute);font-weight:500;margin-left:8px}
+.bar{position:relative;height:18px;background:var(--line);border-radius:99px;margin:26px 0 30px}
+.fill{height:100%;background:var(--pink);border-radius:99px;transition:width .5s}
+.mk{position:absolute;top:-6px;width:2px;height:30px;background:var(--ink)}
+.mk span{position:absolute;top:32px;left:50%;transform:translateX(-50%);font-size:12px;white-space:nowrap;color:var(--mute)}
+.mem{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.mem:last-child{border:0}
+.tag{font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--line)}
+.tag.g{background:var(--ok);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.stat b{display:block;font:800 28px "Bricolage Grotesque",sans-serif}
+.stat span{font-size:13px;color:var(--mute)}
+.tk{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--pink);border-radius:12px;padding:14px;margin-bottom:10px}
+.tk canvas{width:84px;height:84px;flex:none;border-radius:6px;background:#fff;padding:4px}
+.tk code{font-size:15px;font-weight:600;letter-spacing:.04em}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}th{color:var(--mute);font-weight:500}
+.scroll{overflow-x:auto}
+.msg{margin-top:10px;font-weight:600}
+.note{font-size:13px;color:var(--mute);margin-top:10px}
+@media(max-width:560px){.ev{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.fill{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo" id="logo" tabindex="0">squad<b>pass</b></div>
+<nav aria-label="Switch view"><button id="n-stu">Students</button><button id="n-org">Organizer</button></nav></header>
+<main id="app"></main>
+<section class="cta"><h2>Ready to <span class="gt">get started?</span></h2><p>Start a squad for the next party, share the link, and let the price drop as your friends join.</p><a class="btn" href="#events">Browse events</a> <a class="btn alt" href="#organizer">Organizer view</a></section>
+<footer><div style="max-width:320px"><div class="logo" style="margin-bottom:10px">squad<b>pass</b></div>Group discounts on campus party tickets, built at Thapar. Fill your squad and everyone pays less.</div><div><h4>Site</h4><a href="#events">Events</a><a href="#organizer">Organizer</a></div><div><h4>Squad tiers</h4><a href="#events">5 people: 10% off</a><a href="#events">10 people: 20% off</a></div><div class="fine"><span>© 2026 SquadPass. College project demo.</span><span>Test mode. No real payments.</span></div></footer>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const inr=n=>'₹'+Number(n).toLocaleString('en-IN');
+const EV=[
+{id:'e1',name:'Neon Nights Freshers Party',org:'Cultural Society',date:'Sat 22 Nov, 8 PM',venue:'Open Air Theatre',base:500,cap:400,solo:58},
+{id:'e2',name:'Winter Mixer',org:'Music Society',date:'Fri 5 Dec, 7 PM',venue:'Student Activity Center',base:350,cap:250,solo:31},
+{id:'e3',name:'Hostel Night DJ Battle',org:'Hostel Council',date:'Sat 13 Dec, 9 PM',venue:'Hostel Ground',base:400,cap:500,solo:44}];
+const price=(e,n)=>Math.round(e.base*(n>=10?.8:n>=5?.9:1));
+const evOf=id=>EV.find(e=>e.id===id);
+const mkCode=()=>'TH-'+Math.random().toString(36).slice(2,7).toUpperCase();
+const mem=(n,paid)=>({name:n,code:paid?mkCode():null,in:false});
+function seed(){return{squads:[
+{id:'hostelh',ev:'e1',name:'Hostel H gang',leader:'Aman',locked:true,m:['Aman','Riya','Kabir','Sneha','Dev','Isha','Arjun'].map(n=>mem(n,1))},
+{id:'cse3y',ev:'e1',name:'CSE 3rd year',leader:'Tanya',locked:true,m:['Tanya','Rohan','Mehak','Yash','Pooja','Karan','Simran','Nikhil','Ananya','Veer','Diya','Harsh'].map(n=>mem(n,1))},
+{id:'mixfan',ev:'e2',name:'Mixer crew',leader:'Gurleen',locked:true,m:['Gurleen','Jaspreet','Navi','Simar','Preet','Arsh'].map(n=>mem(n,1))}]}}
+let S=null;try{S=JSON.parse(localStorage.getItem('squadpass1'))}catch(e){}
+if(!S||!S.squads)S=seed();
+const save=()=>{try{localStorage.setItem('squadpass1',JSON.stringify(S))}catch(e){}};
+const sq=id=>S.squads.find(s=>s.id===id);
+const FRIENDS=['Harleen','Sahil','Muskan','Aditya','Kriti','Lakshay','Neha','Vansh','Ria','Ishaan','Tushar','Jasmine'];
+
+function go(h){location.hash=h}
+function render(){
+  const h=location.hash.slice(1)||'events';
+  $('#n-stu').setAttribute('aria-current',h!=='organizer');
+  $('#n-org').setAttribute('aria-current',h==='organizer');
+  const app=$('#app');
+  if(h==='organizer')app.innerHTML=orgView();
+  else if(h.startsWith('squad-')&&sq(h.slice(6)))app.innerHTML=squadView(sq(h.slice(6)));
+  else app.innerHTML=eventsView();
+  wire();
+  document.querySelectorAll('canvas[data-c]').forEach(c=>qr(c,c.dataset.c));
+  window.scrollTo(0,0);
+}
+function eventsView(){
+  return `<section class="hero"><div class="eyebrow">● Thapar campus passes</div><h1>Unlock bigger<br><span class="gt">squad discounts</span></h1>
+  <p>Fill your squad to rank up. 5 people unlocks 10% off, 10 people unlocks 20% off, and the biggest squads climb the leaderboard.</p></section><div class="sec" style="border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px"><h2>Explore</h2><div class="meta">Everything that comes with going out together.</div></div>`+
+  EV.map(e=>`<article class="ev"><div><h3>${e.name}</h3><div class="meta">${e.org} · ${e.date} · ${e.venue}</div>
+  <div class="tiers"><span class="tier">Solo ${inr(e.base)}</span><span class="tier">Squad of 5: ${inr(price(e,5))}</span><span class="tier hot">Squad of 10: ${inr(price(e,10))}</span></div></div>
+  <button class="btn" data-new="${e.id}">Start a squad</button></article>`).join('')+
+  `<div class="panel"><h3 style="font-size:19px;margin-bottom:10px">Squad leaderboard</h3>${[...S.squads].sort((a,b)=>b.m.length-a.m.length).map((s,i)=>`<div class="mem"><span><b style="color:var(--gold);margin-right:10px">#${i+1}</b><a href="#squad-${s.id}" style="color:var(--ink);font-weight:600">${esc(s.name)}</a> <span class="meta">${esc(evOf(s.ev).name)}</span></span><span class="tag ${s.locked?'g':''}">${s.locked?'Tickets issued':s.m.length+' joined'}</span></div>`).join('')}</div>`;
+}
+function squadView(s){
+  const e=evOf(s.ev),n=s.m.length,p=price(e,n),pct=Math.min(100,n/10*100);
+  const need=n<5?5-n:n<10?10-n:0;
+  const nextP=n<5?price(e,5):n<10?price(e,10):null;
+  let h=`<a href="#events" class="meta" style="color:var(--mute)">← All events</a>
+  <section class="panel" style="margin-top:10px"><div class="meta">${esc(e.name)} · ${e.date}</div><h2 style="font-size:28px;margin:4px 0 14px">${esc(s.name)}</h2>
+  <div class="big">${inr(p)}<s>${p<e.base?inr(e.base):''}</s></div>
+  <div class="meta">per person${need&&!s.locked?` · ${need} more ${need>1?'friends':'friend'} to drop it to ${inr(nextP)}`:''}</div>
+  <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="${Math.min(n,10)}"><div class="fill" style="width:${pct}%"></div>
+  <div class="mk" style="left:50%"><span>5 · ${inr(price(e,5))}</span></div><div class="mk" style="right:0"><span>10 · ${inr(price(e,10))}</span></div></div>
+  <strong>${n}/10 joined</strong></section>`;
+  if(!s.locked){
+    h+=`<section class="panel"><h3 style="font-size:19px;margin-bottom:12px">Add friends</h3>
+    <div class="row"><input id="fn" placeholder="Friend’s name" aria-label="Friend’s name"><button class="btn" id="add">Add to squad</button><button class="btn alt" id="sim">Add 3 demo friends</button></div>
+    <div class="row" style="margin-top:8px"><button class="btn alt" id="copy">Copy invite link</button></div><div class="msg" id="msg"></div>
+    <div style="margin-top:12px">${s.m.map(x=>`<div class="mem"><span>${esc(x.name)}${x.name===s.leader?' (leader)':''}</span><span class="tag">Reserved</span></div>`).join('')}</div></section>
+    <section class="panel"><h3 style="font-size:19px">Lock squad and pay</h3><p class="meta">Everyone pays ${inr(p)} once the squad is locked. The price is set by the final headcount, so nobody pays more than they have to.</p>
+    <button class="btn" id="lock" ${n<2?'disabled':''}>Pay ${inr(p)} each (test mode)</button>
+    <div class="note">Demo only. No real payment happens. A live version would use UPI paid straight to the organizer.</div></section>`;
+  }else{
+    h+=`<section class="panel"><h3 style="font-size:19px;margin-bottom:12px">Tickets</h3>${s.m.map(x=>`<div class="tk"><canvas width="84" height="84" data-c="${x.code}"></canvas><div><strong>${esc(x.name)}</strong><br><code>${x.code}</code><br><span class="tag ${x.in?'g':''}">${x.in?'Checked in':'Not used'}</span></div></div>`).join('')}
+    <div class="note">The code pattern is a placeholder. A live version would draw a scannable QR.</div></section>`;
+  }
+  return h;
+}
+function orgView(){
+  const rows=S.squads.filter(s=>s.locked);
+  let sqT=0,rev=0;
+  rows.forEach(s=>{sqT+=s.m.length;rev+=s.m.length*price(evOf(s.ev),s.m.length)});
+  const solo=EV.reduce((a,e)=>a+e.solo,0),share=Math.round(sqT/(sqT+solo)*100),cut=Math.round(rev*.1);
+  const inT=rows.reduce((a,s)=>a+s.m.filter(x=>x.in).length,0);
+  return `<h2 style="font-size:32px;margin-bottom:16px">Organizer dashboard</h2>
+  <div class="stats"><div class="stat"><b>${sqT}</b><span>tickets sold via squads</span></div><div class="stat"><b>${share}%</b><span>of all sales came from squads</span></div>
+  <div class="stat"><b>${rows.length?(sqT/rows.length).toFixed(1):0}</b><span>average squad size</span></div><div class="stat"><b>${inr(rev)}</b><span>squad revenue</span></div>
+  <div class="stat"><b>${inr(cut)}</b><span>platform cut at 10%</span></div><div class="stat"><b>${inT}/${sqT}</b><span>checked in</span></div></div>
+  <section class="panel"><h3 style="font-size:19px;margin-bottom:10px">Entry scanner</h3><div class="row"><input id="sc" placeholder="Type a ticket code, e.g. TH-AB12C" aria-label="Ticket code"><button class="btn" id="scan">Check in</button></div><div class="msg" id="msg"></div></section>
+  <section class="panel"><h3 style="font-size:19px;margin-bottom:10px">Squads</h3><div class="scroll"><table><thead><tr><th>Squad</th><th>Event</th><th>Size</th><th>Price each</th><th>Revenue</th></tr></thead><tbody>
+  ${rows.map(s=>{const e=evOf(s.ev),p=price(e,s.m.length);return`<tr><td>${esc(s.name)}</td><td>${esc(e.name)}</td><td>${s.m.length}</td><td>${inr(p)}</td><td>${inr(p*s.m.length)}</td></tr>`}).join('')}</tbody></table></div>
+  <div class="note">Solo ticket sales (${solo}) are sample numbers so you can see the squad share.</div></section>
+  <button class="btn alt" id="reset">Reset demo data</button>`;
+}
+function wire(){
+  const on=(id,f)=>{const el=$(id);if(el)el.onclick=f};
+  document.querySelectorAll('[data-new]').forEach(b=>b.onclick=()=>{
+    const leader=(prompt('Your name?')||'').trim();if(!leader)return;
+    const name=(prompt('Squad name?',leader+'’s squad')||'').trim()||leader+'’s squad';
+    const id='s'+Date.now().toString(36);
+    S.squads.push({id,ev:b.dataset.new,name,leader,locked:false,m:[mem(leader)]});save();go('squad-'+id)});
+  const h=location.hash.slice(7),s=sq(h);
+  const add=n=>{n=n.trim();if(n&&s.m.length<30){s.m.push(mem(n));save();render()}};
+  on('#add',()=>add($('#fn').value));
+  const fn=$('#fn');if(fn)fn.onkeydown=e=>{if(e.key==='Enter')add(fn.value)};
+  on('#sim',()=>{for(let i=0;i<3;i++)s.m.push(mem(FRIENDS[(s.m.length+i)%FRIENDS.length]));save();render()});
+  on('#copy',async()=>{let ok=false;try{await navigator.clipboard.writeText(location.href);ok=true}catch(e){}
+    $('#msg').textContent=ok?'Link copied. Send it to your group chat.':'Copy this link: '+location.href});
+  on('#lock',()=>{s.locked=true;s.m.forEach(x=>x.code=mkCode());save();render()});
+  on('#scan',()=>{const c=$('#sc').value.trim().toUpperCase(),m=$('#msg');let f=null;
+    S.squads.forEach(q=>q.m.forEach(x=>{if(x.code===c)f=x}));
+    if(!f)m.textContent='No ticket with that code.';
+    else if(f.in)m.textContent=f.name+' already checked in. Do not let them in again.';
+    else{f.in=true;save();render();$('#msg').textContent='Welcome, '+f.name+'. Checked in.';return}});
+  on('#reset',()=>{S=seed();save();render()});
+}
+function qr(c,code){
+  const x=c.getContext('2d'),N=21,z=84/N;let h=0;for(const ch of code)h=(h*31+ch.charCodeAt(0))>>>0;
+  const r=()=>(h=(h*1664525+1013904223)>>>0)/4294967296;
+  x.fillStyle='#fff';x.fillRect(0,0,84,84);x.fillStyle='#17163A';
+  const fin=(a,b)=>a<8&&b<8||a>12&&b<8||a<8&&b>12;
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++){
+    let on;if(fin(i,j)){const a=i>12?i-14:i,b=j>12?j-14:j;on=a===0||b===0||a===6||b===6||(a>=2&&a<=4&&b>=2&&b<=4)}else on=r()<.5;
+    if(on&&!(fin(i,j)&&((i===7||j===7)||(i>13&&j===7)))) x.fillRect(i*z,j*z,z+.5,z+.5)}
+}
+$('#n-stu').onclick=()=>go('events');$('#n-org').onclick=()=>go('organizer');
+$('#logo').onclick=()=>go('events');
+window.addEventListener('hashchange',render);render();
+</script>
+</body>
+</html>
